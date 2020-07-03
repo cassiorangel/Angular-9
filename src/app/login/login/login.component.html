@@ -1,16 +1,36 @@
-<form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Endereço de email</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-      <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Senha</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Clique em mim</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Enviar</button>
-  </form>
+<div class="row">
+  <div class="col-sm-12 topo">
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="Email">Endereço de email</label>
+        <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Seu email">
+        <div *ngIf="(!email.pristine || email.touched) && email.errors">
+          <p class="form-text text-danger" *ngIf="email.errors.required">
+            Digite um e-mail.
+          </p>
+          <p class="form-text text-danger" *ngIf="email.errors.email">
+            Digite um e-mail valido.
+          </p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Senha">Senha</label>
+        <input type="password" formControlName="senha" class="form-control" placeholder="Senha">
+        
+        <div *ngIf="(!senha.pristine || senha.touched) && senha.errors">
+          <p class="form-text text-danger" *ngIf="senha.errors.required">
+            Senha é obrigatória.
+          </p>
+          <p class="form-text text-danger" *ngIf="senha.errors.minlength">
+            Senha deve ter no mínimo 6 caracters.
+          </p>
+          <p *ngIf="senha.errors.maxlength" class="form-text text-danger">
+            Senha deve ter no máximo 12 caracters.
+          </p>
+        </div>
+       
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Enviar</button>
+    </form>
+  </div>
+</div>
