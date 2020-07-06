@@ -1,6 +1,7 @@
 import { Usuario } from './../models/Usuario';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,25 @@ export class ServicosAplicacaoService {
 
   private readonly URL_API = 'https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/tt1375666';
 
+  mostrarMenuEmitter = new EventEmitter<boolean>();
+
+  private usuarioAutenticado = false;
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { }
+
+  fazerOlogin(usuario: Usuario) {
+    if(usuario.email === 'user@user.com' && usuario.senha === '1234'){
+      alert('usuario logado');
+      this.usuarioAutenticado = true;
+      this.mostrarMenuEmitter.emit(true)
+      return this.router.navigate(['/home']);
+    }
+    this.usuarioAutenticado = false;
+    return alert('erro ao logar')
+  }
 
   fazerLogin(){
 

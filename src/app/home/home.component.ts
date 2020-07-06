@@ -7,14 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  titulo
   constructor(
     private servico: ServicosAplicacaoService
   ) { }
-
+  
   ngOnInit(): void {
+    
+    this.listaServico()
+  }
+  listaServico() {
     this.servico.fazerLogin()
-      .subscribe(res => console.log(res))
+    .subscribe(res => {
+      this.titulo = res['technical_specs'][0][0];
+
+      console.log(this.titulo)
+      
+    })
   }
 
 }
