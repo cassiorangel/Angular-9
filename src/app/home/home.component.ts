@@ -16,10 +16,14 @@ export class HomeComponent implements OnInit {
     
     this.listaServico()
   }
+
+  
+
+
   listaServico() {
     this.servico.fazerLogin()
     .subscribe(res => {
-      this.titulo = res['technical_specs'][0][0];
+      this.titulo = res['technical_specs'];
 
       console.log(this.titulo)
       

@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.servico.getToken();
   }
   get email() {
     return this.profileForm.get('email');
