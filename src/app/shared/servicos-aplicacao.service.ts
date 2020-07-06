@@ -27,8 +27,13 @@ export class ServicosAplicacaoService {
       return this.router.navigate(['/home']);
     }
     this.usuarioAutenticado = false;
+    this.mostrarMenuEmitter.emit(false);
     return alert('erro ao logar')
   }
+  usuarioEstaAutenticado() {
+    return this.usuarioAutenticado;
+  }
+
 
   fazerLogin(){
 
