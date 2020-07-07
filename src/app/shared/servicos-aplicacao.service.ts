@@ -2,6 +2,7 @@ import { Usuario } from './../models/Usuario';
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
 export class ServicosAplicacaoService {
 
   private readonly key: string = 'aa7a7d31eb16c5f13021ce3c2df7e19a';
+
+  private readonly URL_SESSION: string = 'https://api.themoviedb.org/3/authentication/session/new?api_key=';
 
   private readonly URL_AUTH: string = 'https://api.themoviedb.org/3/authentication/token/validate_with_login?api_key=';
 
@@ -28,6 +31,7 @@ export class ServicosAplicacaoService {
   ) { }
 
   authLogin(usuario: Usuario, token) {
+    
     const body = {
       "username": usuario.email,
       "password": usuario.senha,
@@ -35,11 +39,39 @@ export class ServicosAplicacaoService {
     }
     return this.http.post(this.URL_AUTH + this.key, body)
       .subscribe(res => {
-        console.log('sucesso', res)
+        console.log('sucesso', res);
+        this.setToket(res['request_token'])
         alert('logado sucesso')
       },
       error => console.log(error, 'erro login'))
   }
+
+  getSession() {
+    const api_key = {
+      "request_token": this.key
+    }
+    
+    return this.http.post(this.URL_SESSION, api_key)
+  }
+
+  getSessionToken(usuario: Usuario, token: string) {
+
+    const body = {
+      "username": usuario.email,
+      "password": usuario.senha,
+      "request_token": token
+    }
+    
+    const api_key = {
+      "request_token": this.key
+    }
+    
+    let responseToken = this.http.post(this.URL_AUTH + this.key, body);
+    let responseSession = this.http.post(this.URL_SESSION, api_key);
+    
+    return forkJoin([responseToken, responseSession])
+  }
+
 
   fazerOlogin(usuario: Usuario) {
   

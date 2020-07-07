@@ -6,10 +6,10 @@
         <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Seu email">
         <div *ngIf="(!email.pristine || email.touched) && email.errors">
           <p class="form-text text-danger" *ngIf="email.errors.required">
-            Digite um e-mail.
+            Digite o campo usuário.
           </p>
-          <p class="form-text text-danger" *ngIf="email.errors.email">
-            Digite um e-mail valido.
+          <p class="form-text text-danger" *ngIf="email.errors.minlength">
+            Digite no mínimo 4 caracter.
           </p>
         </div>
       </div>
@@ -30,7 +30,7 @@
         </div>
        
       </div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Logar</button>
     </form>
   </div>
 </div>

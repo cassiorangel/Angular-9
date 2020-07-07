@@ -10,7 +10,7 @@ import { ServicosAplicacaoService } from 'src/app/shared/servicos-aplicacao.serv
 export class LoginComponent implements OnInit {
 
   profileForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: ['', [Validators.required, Validators.minLength(4)]],
     senha: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(12)]]
   });
 
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.servico.getToken();
   }
   get email() {
