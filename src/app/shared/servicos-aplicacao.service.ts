@@ -49,6 +49,7 @@ export class ServicosAplicacaoService {
       error => {
         this.usuarioAutenticado = false;
         this.mostrarMenuEmitter.emit(false);
+        alert(JSON.stringify(error['error']['status_message']))
         console.log(error, 'erro login')
       })
   }
