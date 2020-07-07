@@ -39,11 +39,18 @@ export class ServicosAplicacaoService {
     }
     return this.http.post(this.URL_AUTH + this.key, body)
       .subscribe(res => {
-        console.log('sucesso', res);
-        this.setToket(res['request_token'])
-        alert('logado sucesso')
+       // console.log('sucesso', res);
+        this.usuarioAutenticado = true;
+        this.mostrarMenuEmitter.emit(true);
+        this.setToket(res['request_token']);
+        this.router.navigate(['/home']);
+     
       },
-      error => console.log(error, 'erro login'))
+      error => {
+        this.usuarioAutenticado = false;
+        this.mostrarMenuEmitter.emit(false);
+        console.log(error, 'erro login')
+      })
   }
 
   getSession() {
