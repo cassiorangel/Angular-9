@@ -14,20 +14,10 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
     
-    this.listaServico()
+   // this.listaServico()
   }
 
+ 
   
-
-
-  listaServico() {
-    this.servico.fazerLogin()
-    .subscribe(res => {
-      this.titulo = res['technical_specs'];
-
-      console.log(this.titulo)
-      
-    })
-  }
 
 }

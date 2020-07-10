@@ -21,8 +21,9 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.servico.removeToken();
     this.servico.getToken();
+   
   }
   get email() {
     return this.profileForm.get('email');
@@ -38,7 +39,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log(this.profileForm.value);
     const usuario = this.profileForm.value;
-    this.servico.fazerOlogin(usuario)
+    this.servico.fazerOlogin(usuario);
+   
   }
+  
 
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ServicosAplicacaoService } from './shared/servicos-aplicacao.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +13,21 @@ export class AppComponent {
   mostrarMenu: boolean = false;
 
   constructor(
-    private servico: ServicosAplicacaoService
+    private servico: ServicosAplicacaoService,
+    private router: Router
   ) {}
 
   ngOnInit() {
 
     this.servico.mostrarMenuEmitter.subscribe(res => this.mostrarMenu = res)
     
-    
+  }
+  logout(){
+      this.servico.logout()
+        .subscribe(res => {
+          console.log(res);
+          this.router.navigate(['/login']);
+          this.mostrarMenu = false;
+        })
   }
 }
