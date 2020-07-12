@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Usuario } from './../models/Usuario';
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -78,6 +79,7 @@ export class ServicosAplicacaoService {
         "session_id": this.idSessao
       })
     };
+    console.log(this.idSessao, 'id')
     //Utilizado deste modo devido erro api
     return this.http.delete(this.URL_FINALIZA_SESSION + this.key + '&session_id=' + this.idSessao)
   }
@@ -113,4 +115,8 @@ export class ServicosAplicacaoService {
     return this.usuarioAutenticado;
   }
 
+
+  getSelecaoPrincipal() {
+    return this.http.get(environment.API_PRINCIPAL + this.key)
+  }
 }

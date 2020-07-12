@@ -1,0 +1,139 @@
+  .topo{
+    margin-top: 90px;
+    
+}
+.plot{
+  text-indent: 20px;
+}
+.tamanho{
+  padding: 20px;
+}
+div.scroll{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: red($color: #000000);
+  width: 100%;
+  max-height: 210px;
+  overflow-y: auto;
+}
+.cor-title{
+  color: #fff;
+}
+.destaque{
+  font-weight: 600;
+}
+ul.lista {list-style-type:square;}
+.top{
+    margin-bottom: 20px;
+}
+.topo-list{
+  margin-top: 20px;
+}
+.bt{
+    min-width: 120px;
+}
+.elenco{
+  margin-top: 20px;
+  padding-bottom: 10px;
+  text-indent: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  border-bottom: 1px solid #f2f2f2;
+  width: 100%;
+}
+.estilo{
+    width: 18rem;
+   
+}
+ul.estilos{
+  list-style: none;
+}
+.img-l{
+    width: 200px;
+    height: 180px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 6px;
+}
+.borda{
+  
+    width: 210px;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+}
+.bts{
+    width: 98%;
+    display: block;
+    margin: 0 auto;
+}
+.cardy{
+    min-width: 210px!important;
+}
+.card-bodys{
+    min-height: 160px!important;
+}
+.card-define{
+    min-height: 130px;
+}
+.filme{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.conteudo{
+    text-indent: 40px;
+    font-size: 14px;
+}
+.corpo{
+    border-top: 1px solid #ccc;
+}
+
+
+ @media (max-width: 575.98px) { 
+    .btn-pequeno{
+        width: 100%!important;
+    }
+  }
+  .loading{     
+     z-index: 2001;
+     background: rgba(0, 0, 0, 0.6);
+     transition: opacity .15s linear;
+     position: fixed;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     text-align: center;
+  }
+  .lds-hourglass {
+    display: inline-block;
+    position: relative;
+    margin-top: 100px;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-hourglass:after {
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    margin: 8px;
+    box-sizing: border-box;
+    border: 32px solid #cef;
+    border-color: #cef transparent #cef transparent;
+    animation: lds-hourglass 1.2s infinite;
+  }
+  @keyframes lds-hourglass {
+    0% {
+      transform: rotate(0);
+      animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+    50% {
+      transform: rotate(900deg);
+      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    100% {
+      transform: rotate(1800deg);
+    }
+  }

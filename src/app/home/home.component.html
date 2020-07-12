@@ -1,1 +1,15 @@
-<p>home works!</p>
+<div class="row topo-list">
+    <div class="col-sm-6 col-md-3 top" *ngFor="let item of listaFilmes">
+      <div class="card cardy" style="margin: 2px!important">
+        <span class="borda">
+          <img class="card-img-top img-l" src="{{ urlImg + item.backdrop_path }}" alt="" />
+        </span>
+        <div class="card-body card-bodys">
+          <div class="card-define">
+            <h5 class="card-title">{{ item.original_title }}</h5>
+          </div>
+          <button class="btn btn-primary bts">Detalhes</button>
+        </div>
+      </div>
+    </div>
+  </div>

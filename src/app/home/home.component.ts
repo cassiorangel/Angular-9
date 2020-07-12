@@ -11,9 +11,15 @@ export class HomeComponent implements OnInit {
   constructor(
     private servico: ServicosAplicacaoService
   ) { }
-  
+  urlImg: string = 'https://image.tmdb.org/t/p/w500/'
+  listaFilmes
+  imgFilme: string;
   ngOnInit(): void {
-    
+    this.servico.getSelecaoPrincipal()
+      .subscribe(res => { 
+        this.imgFilme = res['backdrop_path']
+        this.listaFilmes = res['results']; 
+        console.log(res['results'])})
    // this.listaServico()
   }
 
