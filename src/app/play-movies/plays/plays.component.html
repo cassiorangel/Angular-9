@@ -1,0 +1,72 @@
+<div class="card title topo-template">
+    <div class="card-header fm">
+      Api de filmes
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Busca</h5>
+  
+      <form [formGroup]="formBusca" (ngSubmit)="pesquisa()">
+        <div class="form-row">
+          <div class="col">
+            <select
+              class="form-control form-control-sm"
+              formControlName="idioma"
+              required
+            >
+              <option value="">Selecione Idioma </option>
+              <option *ngFor="let idioma of linguagem" [value]="idioma.id">{{
+                idioma.name
+              }}</option>
+            </select>
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="filme"
+              placeholder="Filme"
+              required
+            />
+          </div>
+        </div>
+  
+        <button
+          class="btn btn-primary btn-sm btns"
+          type="submit"
+          [disabled]="!formBusca.valid"
+        >
+          Pesquisar
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" style="margin-bottom: 20px;">
+    <div class="col-sm-3 col-12 topo" *ngFor="let item of listaFilmes">
+      <div class="card" style="min-width: 240px; min-height: 300px;padding: 10px;">
+        <span >
+          <img
+            class="card-img-top img-responsive"
+            src="{{ imagePath + item.poster_path }}"
+            alt=""
+            style="min-width: 200px;height: 300px;margin: 0 auto;display: block;padding-top: 10px;"
+          />
+        </span>
+
+        <div class="card-body">
+          <div class="card-d">
+            <h5 class="card-title title-card"><span class="title">Título: </span>{{ item.original_title }}</h5>
+  
+            <p class="card-text" > 
+             {{ item.overview }}
+            </p>
+  
+            <p class="card-text" > 
+              Este filme não possue sinopse 
+            </p>
+          </div>
+          <button class="btn btn-primary btn-sm bt" (click)="detalheFilme(item.id)">Detalhes</button>
+        </div>
+      </div>
+    </div>
+  </div>

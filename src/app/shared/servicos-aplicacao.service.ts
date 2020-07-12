@@ -12,6 +12,8 @@ export class ServicosAplicacaoService {
 
   private readonly key: string = 'aa7a7d31eb16c5f13021ce3c2df7e19a';
 
+  private readonly config: string = 'https://api.themoviedb.org/3/configuration?api_key='
+
   private readonly URL_FINALIZA_SESSION = 'https://api.themoviedb.org/3/authentication/session?api_key=';
 
   private readonly URL_SESSION: string = 'https://api.themoviedb.org/3/authentication/session/new?api_key=';
@@ -34,6 +36,10 @@ export class ServicosAplicacaoService {
     private http: HttpClient,
     private router: Router
   ) { }
+
+  configURL() {
+    return this.http.get(this.config + this.key)
+  }
 
   authLogin(usuario: Usuario, token) {
 
@@ -64,10 +70,10 @@ export class ServicosAplicacaoService {
     const api_key = {
       "request_token": token
     }
-
+    
     return this.http.post(this.URL_SESSION + this.key, api_key)
       .subscribe(res => {
-
+        console.log('session', res['session_id'])
         this.idSessao = res['session_id'];
       })
   }
@@ -118,5 +124,8 @@ export class ServicosAplicacaoService {
 
   getSelecaoPrincipal() {
     return this.http.get(environment.API_PRINCIPAL + this.key)
+  }
+  getSearch(linguagem: string, filme: string) {
+    return this.http.get(environment.API_SEARCH + this.key + '&language=' + linguagem + '' + '&query=' + filme)
   }
 }

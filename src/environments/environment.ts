@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_PRINCIPAL: 'https://api.themoviedb.org/3/movie/popular?api_key='
+  API_PRINCIPAL: 'https://api.themoviedb.org/3/movie/popular?api_key=',
+  API_SEARCH: 'https://api.themoviedb.org/3/search/movie?api_key='
 };
 
 /*

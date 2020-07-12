@@ -9,6 +9,10 @@ const routes: Routes = [
     path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomeModule ),
     canActivate: [AuthGuard]
   },
+  { 
+    path: 'plays', loadChildren: () => import('./play-movies/play-movies.module').then( m => m.PlayMoviesModule ),
+    canActivate: [AuthGuard]
+  },
   {
     path: '',
     redirectTo: '/login',
