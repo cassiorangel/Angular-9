@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private servico: ServicosAplicacaoService
   ) { }
-  urlImg: string = 'https://image.tmdb.org/t/p/w500/'
+  urlImg: string = 'https://image.tmdb.org/t/p/w500/';
   listaFilmes
   imgFilme: string;
   ngOnInit(): void {
@@ -42,12 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if(this.listaPopulares$) {
-      this.listaFilmes = [];
-      this.imgFilme = '';
       this.listaPopulares$.unsubscribe();
-    }
-   
   }
 
 

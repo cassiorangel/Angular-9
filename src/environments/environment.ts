@@ -7,7 +7,8 @@ export const environment = {
   API_PRINCIPAL: 'https://api.themoviedb.org/3/movie/popular?api_key=',
   API_SEARCH: 'https://api.themoviedb.org/3/search/movie?api_key=',
   API_VIDEO: 'https://api.themoviedb.org/3/movie/',
-  API_FAVORITES: 'https://api.themoviedb.org/3/account/{account_id}/favorite?api_key='
+  API_FAVORITES: 'https://api.themoviedb.org/3/account/{account_id}/favorite?api_key=',
+  API_FAVORITES_LIST: 'https://api.themoviedb.org/3/account/{account_id}/favorite/movies?api_key='
 };
 
 /*

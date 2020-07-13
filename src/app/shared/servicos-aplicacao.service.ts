@@ -142,4 +142,7 @@ export class ServicosAplicacaoService {
 
     return this.http.post(environment.API_FAVORITES + this.key + '&session_id=' + this.idSessao, body)
   }
+  getFavorites() {
+    return this.http.get(environment.API_FAVORITES_LIST + this.key + '&session_id=' + this.idSessao + '&sort_by=created_at.asc')
+  }
 }
