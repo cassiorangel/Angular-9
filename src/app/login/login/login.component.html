@@ -2,8 +2,8 @@
   <div class="col-sm-12 topo">
     <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="Email">Endereço de email</label>
-        <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Seu email">
+        <label for="Email">Usuário</label>
+        <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Seu usuário">
         <div *ngIf="(!email.pristine || email.touched) && email.errors">
           <p class="form-text text-danger" *ngIf="email.errors.required">
             Digite o campo usuário.
@@ -30,7 +30,7 @@
         </div>
        
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Logar</button>
+      <button type="submit" class="btn btn-primary btns" [disabled]="!profileForm.valid">Logar</button>
     </form>
   </div>
 </div>
