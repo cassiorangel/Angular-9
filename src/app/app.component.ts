@@ -28,6 +28,7 @@ export class AppComponent {
           console.log(res);
           this.router.navigate(['/login']);
           this.mostrarMenu = false;
+          this.servico.removeToken();
         })
   }
 }
