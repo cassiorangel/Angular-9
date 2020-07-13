@@ -61,7 +61,7 @@
              {{ item.overview | limiterCaracter: [100] }}
             </p>
   
-            <p class="card-text" > 
+            <p class="card-text" *ngIf="!item.overview"> 
               Este filme não possue sinopse 
             </p>
           </div>
