@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { catchError } from 'rxjs/operators';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ServicosAplicacaoService } from 'src/app/shared/servicos-aplicacao.service';
 import { of, Subscription } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-plays',
@@ -13,12 +15,22 @@ export class PlaysComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private service: ServicosAplicacaoService
-  ) { }
+    private service: ServicosAplicacaoService,
+    private modalService: BsModalService,
+    public sanitizer: DomSanitizer
+  ) { 
+    
+  }
+  
+  modalRef: BsModalRef;
 
   dadosFilmes: Subscription;
 
-  imagePath = 'https://image.tmdb.org/t/p/w500/';
+  keyVideo: SafeResourceUrl;
+
+  urlVideo: string = 'https://www.youtube.com/embed/';
+
+  imagePath: string = 'https://image.tmdb.org/t/p/w500/';
 
   listaFilmes: any[];
 
@@ -53,9 +65,26 @@ export class PlaysComponent implements OnInit {
         this.listaFilmes = res['results']
         console.log(this.listaFilmes)})
   }
-  detalheFilme(id: number) {
-    console.log(id)
+  detalheFilme(id: number, template: TemplateRef<any>) {
+    console.log(id);
+    this.service.getVideoDetalhe(id)
+    .pipe(
+      catchError(error => of(console.log(error)))
+    )
+    .subscribe(res => {
+      if(res['results'].length) {
+        const key = res['results'][0]['key'];
+        const url = 'https://www.youtube.com/embed/'
+        this.keyVideo = this.sanitizer.bypassSecurityTrustResourceUrl(url + key);
+        return this.modalRef = this.modalService.show(template, { class: 'gray modal-lg' }); 
+      }
+      return alert('Video nao disponível');
+    })
+    
   }
+
+  
+
   ngOnDestroy(): void {
     this.dadosFilmes.unsubscribe();
   }

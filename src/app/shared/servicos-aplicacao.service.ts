@@ -128,4 +128,7 @@ export class ServicosAplicacaoService {
   getSearch(linguagem: string, filme: string) {
     return this.http.get(environment.API_SEARCH + this.key + '&language=' + linguagem + '' + '&query=' + filme)
   }
+  getVideoDetalhe(idFilme: number) {
+    return this.http.get(environment.API_VIDEO + idFilme + '/videos?api_key=' + this.key)
+  }
 }
