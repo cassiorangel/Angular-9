@@ -131,4 +131,15 @@ export class ServicosAplicacaoService {
   getVideoDetalhe(idFilme: number) {
     return this.http.get(environment.API_VIDEO + idFilme + '/videos?api_key=' + this.key)
   }
+
+  addFavorites(idMidia: number) {
+
+    const body = {
+      "media_type": "movie",
+      "media_id": idMidia,
+      "favorite": true
+    }
+
+    return this.http.post(environment.API_FAVORITES + this.key + '&session_id=' + this.idSessao, body)
+  }
 }

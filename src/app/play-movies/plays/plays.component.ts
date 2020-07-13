@@ -5,6 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ServicosAplicacaoService } from 'src/app/shared/servicos-aplicacao.service';
 import { of, Subscription } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-plays',
@@ -24,7 +25,7 @@ export class PlaysComponent implements OnInit {
   
   modalRef: BsModalRef;
 
-  dadosFilmes: Subscription;
+  dadosFilmes$: Subscription;
 
   keyVideo: SafeResourceUrl;
 
@@ -57,7 +58,7 @@ export class PlaysComponent implements OnInit {
     const filme = this.formBusca.value['filme'];
     const idioma = this.formBusca.value['idioma']
    
-    this.dadosFilmes = this.service.getSearch(idioma, filme)
+    this.dadosFilmes$ = this.service.getSearch(idioma, filme)
       .pipe(
         catchError(error => of(console.log(error)))
       )
@@ -82,11 +83,13 @@ export class PlaysComponent implements OnInit {
     })
     
   }
-
-  
-
+    
   ngOnDestroy(): void {
-    this.dadosFilmes.unsubscribe();
+    
+    if(this.dadosFilmes$){
+      this.dadosFilmes$.unsubscribe();
+    }
+    
   }
 
 }

@@ -13,6 +13,10 @@ const routes: Routes = [
     path: 'plays', loadChildren: () => import('./play-movies/play-movies.module').then( m => m.PlayMoviesModule ),
     canActivate: [AuthGuard]
   },
+  { 
+    path: 'favorites', loadChildren: () => import('./favorites/favorites.module').then( m => m.FavoritesModule ),
+    canActivate: [AuthGuard]
+  },
   {
     path: '',
     redirectTo: '/login',

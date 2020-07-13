@@ -1,9 +1,12 @@
 <div class="row">
   <div class="col-sm-12 topo">
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <h5>Tela de login</h5>
+    <hr>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" style="margin-top: 20px;">
       <div class="form-group">
         <label for="Email">Usuário</label>
-        <input type="email" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Seu usuário">
+        <input type="text" formControlName="email" class="form-control" aria-describedby="emailHelp" placeholder="Seu usuário">
         <div *ngIf="(!email.pristine || email.touched) && email.errors">
           <p class="form-text text-danger" *ngIf="email.errors.required">
             Digite o campo usuário.
